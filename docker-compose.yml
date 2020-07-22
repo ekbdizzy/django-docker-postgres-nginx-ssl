@@ -1,19 +1,43 @@
 version: "3"
 
 services:
+
   web:
     container_name: django_template
+
     build:
       context: ./project/
       dockerfile: Dockerfile
 
+    depends_on:
+      - postgres
+
     ports:
       - 8000:8000
+
+    command: "sleep 10s"
 
     command:
       - python
       - manage.py
       - runserver
       - 0.0.0.0:8000
+
+
+
+  postgres:
+    image: postgres:12.3
+    restart: always
+    ports:
+      - 5432:5432
+    volumes:
+      - ./dockerfiles/pgdata:/var/lib/postgresql/data/pgdata
+    env_file: ./project/.env
+
+
+
+
+
+
 
 
