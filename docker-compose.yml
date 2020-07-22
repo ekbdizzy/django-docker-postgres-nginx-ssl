@@ -1,0 +1,15 @@
+version: "3"
+
+services:
+  web:
+    container_name: django_template
+    build:
+      context: ./project/
+      dockerfile: Dockerfile
+
+    ports:
+      - 8000:8000
+
+    command:
+      - pwd
+
