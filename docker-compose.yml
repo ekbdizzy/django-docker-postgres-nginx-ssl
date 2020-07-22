@@ -2,8 +2,25 @@ version: "3"
 
 services:
 
+#
+#  nginx:
+#    restart: always
+#    image: nginx:latest
+#    expose:
+#      - 8080
+#    ports:
+#      - 80:8080
+#    volumes:
+#      - ./
+#    depends_on:
+#      - web
+
+
+
+
   web:
     container_name: django_template
+    restart: always
 
     build:
       context: ./project/
@@ -15,14 +32,7 @@ services:
     ports:
       - 8000:8000
 
-    command: "sleep 10s"
-
-    command:
-      - python
-      - manage.py
-      - runserver
-      - 0.0.0.0:8000
-
+    command: bash -c "sleep 5 && gunicorn -c gunicorn.conf.py project.wsgi"
 
 
   postgres:
