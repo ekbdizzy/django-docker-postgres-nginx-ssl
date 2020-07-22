@@ -9,8 +9,5 @@ COPY . /project
 
 ENV PYTHONUNBUFFERED 1
 
-RUN echo Hey-hey!
 
-RUN ls
 
-CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
