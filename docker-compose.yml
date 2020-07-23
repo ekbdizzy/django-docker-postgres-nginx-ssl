@@ -2,20 +2,27 @@ version: "3"
 
 services:
 
-#
-#  nginx:
-#    restart: always
-#    image: nginx:latest
-#    expose:
-#      - 8080
-#    ports:
-#      - 80:8080
-#    volumes:
-#      - ./
-#    depends_on:
-#      - web
 
+  nginx:
+    restart: always
+    image: nginx:latest
+    expose:
+      - 8080
+    ports:
+      - 80:8080
+    volumes:
+      - ./project/static:/project/static
+      - ./project/media:/project/media
+      - ./project/logs:/project/logs
+      - ./nginx:/etc/nginx/conf.d
+    depends_on:
+      - web
 
+    logging:
+      driver: "json-file"
+      options:
+        max-file: "5"
+        max-size: "3m"
 
 
   web:
@@ -32,7 +39,14 @@ services:
     ports:
       - 8000:8000
 
+    logging:
+      driver: "json-file"
+      options:
+        max-file: "5"
+        max-size: "3m"
+
     command: bash -c "sleep 5 && gunicorn -c gunicorn.conf.py project.wsgi"
+
 
 
   postgres:
