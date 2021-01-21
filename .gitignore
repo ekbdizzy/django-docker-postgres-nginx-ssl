@@ -5,3 +5,4 @@ venv/
 project/logs
 project/static
 dockerfiles/
+**/.DS_Store
