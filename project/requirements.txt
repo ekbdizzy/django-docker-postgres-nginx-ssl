@@ -1,8 +1,12 @@
 asgiref==3.2.10
 Django==3.0.8
+environs==9.2.0
 gevent==20.6.2
 greenlet==0.4.16
 gunicorn==20.0.4
+Jinja2==2.11.2
+MarkupSafe==1.1.1
+marshmallow==3.10.0
 psycopg2-binary==2.8.5
 python-dotenv==0.14.0
 pytz==2020.1
