@@ -9,11 +9,17 @@ services:
       - 8080
     ports:
       - 80:8080
+      - 443:443
     volumes:
       - ./project/static:/project/static
       - ./project/media:/project/media
       - ./project/logs:/project/logs
-      - ./nginx:/etc/nginx/conf.d
+      - ./data/certbot/conf:/etc/letsencrypt
+      - ./data/certbot/www:/var/www/certbot
+      - ./config/nginx/conf_ssl.d:/etc/nginx/conf.d
+
+    command: "/bin/sh -c 'while :; do sleep 6h & wait $${!}; nginx -s reload; done & nginx -g \"daemon off;\"'"
+
     depends_on:
       - web
 
@@ -22,6 +28,16 @@ services:
       options:
         max-file: "5"
         max-size: "3m"
+
+
+  certbot:
+    image: certbot/certbot
+    restart: unless-stopped
+    volumes:
+      - ./data/certbot/conf:/etc/letsencrypt
+      - ./data/certbot/www:/var/www/certbot
+    entrypoint: "/bin/sh -c 'trap exit TERM; while :; do certbot renew; sleep 5d & wait $${!}; done;'"
+
 
 
   web:

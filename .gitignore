@@ -1,8 +1,7 @@
 venv/
 .idea/
-*/*/__pycache__
-*/__pycache__
 project/logs
 project/static
-dockerfiles/
+dockerfiles
+**/__pycache__
 **/.DS_Store

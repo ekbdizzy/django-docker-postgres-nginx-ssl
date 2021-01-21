@@ -1,0 +1,70 @@
+version: "3"
+
+services:
+
+  nginx:
+    restart: always
+    image: nginx:latest
+    expose:
+      - 8080
+    ports:
+      - 80:8080
+    volumes:
+      - ./project/static:/project/static
+      - ./project/media:/project/media
+      - ./project/logs:/project/logs
+      - ./config/nginx/conf.d:/etc/nginx/conf.d
+    depends_on:
+      - web
+
+    logging:
+      driver: "json-file"
+      options:
+        max-file: "5"
+        max-size: "3m"
+
+
+
+  web:
+    container_name: django_template
+    restart: always
+
+    build:
+      context: ./project/
+      dockerfile: Dockerfile
+
+    depends_on:
+      - postgres
+
+    ports:
+      - 8000:8000
+
+    volumes:
+      - ./project:/project
+
+    logging:
+      driver: "json-file"
+      options:
+        max-file: "5"
+        max-size: "3m"
+
+    command: bash -c "sleep 5 && python manage.py makemigrations --noinput && python manage.py migrate --noinput && gunicorn -c gunicorn.conf.py project.wsgi"
+
+
+
+  postgres:
+    image: postgres:12.3
+    restart: always
+    ports:
+      - 5432:5432
+    volumes:
+      - ./dockerfiles/pgdata:/var/lib/postgresql/data/pgdata
+    env_file: ./project/.env
+
+
+
+
+
+
+
+
