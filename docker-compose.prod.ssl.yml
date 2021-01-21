@@ -11,12 +11,12 @@ services:
       - 80:80
       - 443:443
     volumes:
+      - ./data/nginx/conf_ssl.d:/etc/nginx/conf.d
       - ./project/static:/project/static
       - ./project/media:/project/media
       - ./project/logs:/project/logs
       - ./data/certbot/conf:/etc/letsencrypt
       - ./data/certbot/www:/var/www/certbot
-      - ./config/nginx/conf_ssl.d:/etc/nginx/conf.d
 
     command: "/bin/sh -c 'while :; do sleep 6h & wait $${!}; nginx -s reload; done & nginx -g \"daemon off;\"'"
 

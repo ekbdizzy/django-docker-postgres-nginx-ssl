@@ -13,7 +13,7 @@ services:
       - ./project/static:/project/static
       - ./project/media:/project/media
       - ./project/logs:/project/logs
-      - ./config/nginx/conf.d:/etc/nginx/conf.d
+      - ./data/nginx/conf.d:/etc/nginx/conf.d
     depends_on:
       - web
 

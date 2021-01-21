@@ -1,8 +1,8 @@
 import sys
 from jinja2 import Environment, FileSystemLoader
 
-LETSENCRYPT_TEMPLATE = './config/templates/template-init-letsencrypt.sh'
-NGINX_TEMPLATE = './config/templates/template_project_ssl.conf'
+LETSENCRYPT_TEMPLATE = './data/templates/template-init-letsencrypt.sh'
+NGINX_TEMPLATE = './data/templates/template_project_ssl.conf'
 
 env = Environment(loader=FileSystemLoader('.'))
 
@@ -24,5 +24,5 @@ if __name__ == "__main__":
     with open('init-letsencrypt.sh', 'w', encoding='utf-8') as file:
         file.write(render_content(LETSENCRYPT_TEMPLATE, domain_name=domain_name, email=email))
 
-    with open('./config/nginx/conf_ssl.d/project.conf', 'w', encoding='utf-8') as file:
+    with open('./data/nginx/conf_ssl.d/project.conf', 'w', encoding='utf-8') as file:
         file.write(render_content(NGINX_TEMPLATE, domain_name=domain_name, email=email))
