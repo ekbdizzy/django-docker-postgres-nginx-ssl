@@ -24,5 +24,5 @@ if __name__ == "__main__":
     with open('init-letsencrypt.sh', 'w', encoding='utf-8') as file:
         file.write(render_content(LETSENCRYPT_TEMPLATE, domain_name=domain_name, email=email))
 
-    with open('./data/nginx/conf_ssl.d/project.conf', 'w', encoding='utf-8') as file:
+    with open('./data/nginx/conf_ssl.d/nginx.conf', 'w', encoding='utf-8') as file:
         file.write(render_content(NGINX_TEMPLATE, domain_name=domain_name, email=email))
