@@ -2,7 +2,7 @@
  
 Docker compose project base with Django, PosgreSQL, Nginx, Gunicorn and Certbot.<br>
 Production and Development setup use gunicorn and nginx.<br>
-Thanks to [django-docker-setup]("https://github.com/ermissa/django-docker-setup"). 
+Thanks to [django-docker-setup](https://github.com/ermissa/django-docker-setup). 
 
 ## Setup Project
 
