@@ -17,12 +17,6 @@ services:
     depends_on:
       - web
 
-    logging:
-      driver: "json-file"
-      options:
-        max-file: "5"
-        max-size: "3m"
-
 
 
   web:
@@ -41,12 +35,6 @@ services:
 
     volumes:
       - ./project:/project
-
-    logging:
-      driver: "json-file"
-      options:
-        max-file: "5"
-        max-size: "3m"
 
     command: bash -c "sleep 5 && python manage.py makemigrations --noinput && python manage.py migrate --noinput && gunicorn -c gunicorn.conf.py project.wsgi"
 

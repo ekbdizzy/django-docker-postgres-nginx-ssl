@@ -1,6 +1,6 @@
 SECRET_KEY=awesome_secret_key
 DEBUG=True
-ALLOWED_HOSTS=localhost,noommy.com,www.noommy.com,188.166.150.181
+ALLOWED_HOSTS=localhost,example.com,www.example.com
 POSTGRES_USER=username
 POSTGRES_PASSWORD=postgresql_password
 POSTGRES_DB=database_name

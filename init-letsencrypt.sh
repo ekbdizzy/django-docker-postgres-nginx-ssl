@@ -1,9 +1,13 @@
-#################
-
 #!/bin/bash
 
-domains=(noommy.com www.noommy.com)
-email="ekbdizzy@yandex.ru" # Adding a valid address is strongly recommended
+
+# ------* Change your domain and email here *-------
+
+domains=(example.com www.example.com) # <--- Change your domain
+email="mail@mail.ru" # Adding a valid address is strongly recommended
+
+# --------------------------------------------------
+
 
 rsa_key_size=4096
 data_path="./data/certbot"
