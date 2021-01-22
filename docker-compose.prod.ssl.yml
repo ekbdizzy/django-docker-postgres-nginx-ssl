@@ -3,7 +3,7 @@ version: "3"
 services:
 
   nginx:
-    image: nginx:latest
+    image: nginx:1.15-alpine
     restart: always
     expose:
       - 8080
